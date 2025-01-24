@@ -1,5 +1,5 @@
 import express from 'express'
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser' // parses very long cookie string and  gets you an object
 import cors from 'cors'
 import jwt, {JwtPayload} from 'jsonwebtoken'
 import path from "path"
@@ -21,7 +21,7 @@ app.post("/signin",(req, res) => {
     const token = jwt.sign({
         id: 1,
     }, JWT_SECRET);
-    res.cookie("token", true);
+    res.cookie("token", true); // this is will put cookie in the set-cookie header
     res.send("Logged In");
 })
 
@@ -35,7 +35,7 @@ app.get("/user", (req, res) => {
 })
 
 app.post("/logout", (req, res) => {
-    res.cookie('token', "ads");
+    res.clearCookie("token")
     res.json({
         message : "Logged Out"
     })
