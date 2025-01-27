@@ -23,6 +23,7 @@ app.post("/signin", (req, res) => {
 
 app.get("/user", (req, res) => {
     const token = req.cookies.token;
+    console.log(req.cookies)
     const decoded = jwt.verify(token, JWT_SECRET) as any;
     res.send({
         userId: decoded.id
